@@ -10,7 +10,7 @@ const Navigation = () => {
     <nav>
       <NavLink
         to={{
-          pathname: '/',
+          pathname: '/goit-react-hw-08-phonebook/',
           state: { from: location },
         }}
       >
@@ -18,7 +18,7 @@ const Navigation = () => {
       </NavLink>
       <NavLink
         to={{
-          pathname: '/contacts',
+          pathname: '/goit-react-hw-08-phonebook/contacts',
           state: { from: location },
         }}
       >

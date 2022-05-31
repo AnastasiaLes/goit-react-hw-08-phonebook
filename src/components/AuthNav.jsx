@@ -8,7 +8,7 @@ const AuthNav = () => {
     <nav>
       <NavLink
         to={{
-          pathname: '/register',
+          pathname: '/goit-react-hw-08-phonebook/register',
           state: { from: location },
         }}
       >
@@ -16,7 +16,7 @@ const AuthNav = () => {
       </NavLink>
       <NavLink
         to={{
-          pathname: '/login',
+          pathname: '/goit-react-hw-08-phonebook/login',
           state: { from: location },
         }}
       >

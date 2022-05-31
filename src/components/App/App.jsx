@@ -30,7 +30,7 @@ export function App() {
       <AppBar />
       <Suspense fallback={<h2>Loading....</h2>}>
         <Routes>
-          <Route path="/" element={<HomeView />}>
+          <Route path="/goit-react-hw-08-phonebook/" element={<HomeView />}>
             <Route index element={<Welcome />} />
             <Route path="register" element={<RegisterView />} />
             <Route path="login" element={<LoginView />} />
