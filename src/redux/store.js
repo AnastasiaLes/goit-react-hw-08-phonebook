@@ -8,14 +8,14 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { authReducer } from '../redux/auth/authSlice';
+import { persistedAuthReducer } from '../redux/auth/authSlice';
 // import { persistedMyContactsReducer } from './contactsSlice';
 // import persistReducer from 'redux-persist/es/persistReducer';
 
 export const store = configureStore({
   reducer: {
     // myContacts: persistedMyContactsReducer,
-    auth: authReducer,
+    auth: persistedAuthReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

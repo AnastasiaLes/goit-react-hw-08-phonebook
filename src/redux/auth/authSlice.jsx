@@ -13,13 +13,16 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [register.fulfilled](state, action) {
+    [register.fulfilled]: (state, action) => {
+      console.log('state: ', state, 'action: ', action);
       state.user = action.payload.user;
       state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.isLoggedIn = action.payload.isLoggedIn;
     },
   },
 });
+
+export const authReducer = authSlice.reducer;
 
 const persistConfig = {
   key: 'auth',
@@ -27,5 +30,9 @@ const persistConfig = {
   //   whitelist: ['contacts'],
 };
 
-export const authReducer = persistReducer(persistConfig, authSlice.reducer);
+export const persistedAuthReducer = persistReducer(
+  persistConfig,
+  authSlice.reducer
+);
+
 // export default authSlice.reducer;

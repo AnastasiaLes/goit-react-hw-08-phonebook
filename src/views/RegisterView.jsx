@@ -14,11 +14,6 @@ const RegisterPage = () => {
   const schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().required(),
-    //       yup
-    //   .string()
-    //   .email('Must be a valid email')
-    //   .max(255)
-    //   .required('Email is required'),
     password: yup.string().required(),
   });
 
@@ -32,7 +27,6 @@ const RegisterPage = () => {
     // event.preventDefault();
     const { name, email, password } = values;
     dispatch(register({ name, email, password }));
-    console.log(name, email, password);
     resetForm();
   };
 
