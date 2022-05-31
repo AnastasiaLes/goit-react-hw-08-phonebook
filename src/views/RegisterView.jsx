@@ -13,11 +13,12 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
   const schema = yup.object().shape({
     name: yup.string().required(),
-    email: yup
-      .string()
-      .email('Must be a valid email')
-      .max(255)
-      .required('Email is required'),
+    email: yup.string().required(),
+    //       yup
+    //   .string()
+    //   .email('Must be a valid email')
+    //   .max(255)
+    //   .required('Email is required'),
     password: yup.string().required(),
   });
 
@@ -27,12 +28,12 @@ const RegisterPage = () => {
     password: '',
   };
 
-  const handleSubmit = (event, initialValues) => {
+  const handleSubmit = (values, { resetForm }) => {
     // event.preventDefault();
-    console.log('Submiting!');
-    const { name, email, password } = initialValues;
+    const { name, email, password } = values;
     dispatch(register({ name, email, password }));
-    // resetForm();
+    console.log(name, email, password);
+    resetForm();
   };
 
   const passwordInputId = nanoid();
