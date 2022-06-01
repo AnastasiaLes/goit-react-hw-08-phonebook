@@ -2,13 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PrivateRoute from 'components/appBar/PrivateRoute';
 import PublicRoute from 'components/appBar/PublicRoute';
-// import { NameField } from '../Form/Form';
-// import { ContactList } from '../ContactList/ContactList';
-// import { FilterField } from '../Filter/filter';
-// import { useGetContactsQuery } from 'redux/contactsSlice';
 import { Suspense, lazy, useEffect } from 'react';
-// import HomeView from 'views/HomeView';
-// import Welcome from "views/WelcomeView";
 import AppBar from 'components/appBar/AppBar';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
 

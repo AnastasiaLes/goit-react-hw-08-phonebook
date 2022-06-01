@@ -1,5 +1,3 @@
-// import { Nav, NavElement } from "./Navigation.styled";
-// import { NavLink } from 'react-router-dom';
 import { NavigationLink } from './AppBar.styled';
 
 import { useLocation } from 'react-router-dom';

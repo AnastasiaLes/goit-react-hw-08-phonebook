@@ -12,10 +12,6 @@ export const NavigationLink = styled(NavLink)`
   color: black;
   font-weight: 700;
 
-  /* border: 2px solid lightgray; */
-  /* border-radius: 5px; */
-  /* background-color: lightgray; */
-
   :hover {
     color: grey;
   }

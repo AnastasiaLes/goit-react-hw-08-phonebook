@@ -19,7 +19,6 @@ export default function ContactsView() {
 
   return (
     <div>
-      {/* <h1>Phonebook</h1> */}
       <NameField listOfContacts={data} />
       <FilterField addFilter={addFilter} />
       {isFetching && <h2>Loading...</h2>}

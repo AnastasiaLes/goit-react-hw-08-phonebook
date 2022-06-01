@@ -2,14 +2,10 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
-
-// import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 
 const RegisterPage = () => {
-  // const [email, setEmail] = useState('');
-  // const [name, setName] = useState('');
   const dispatch = useDispatch();
   const schema = yup.object().shape({
     name: yup.string().required(),
