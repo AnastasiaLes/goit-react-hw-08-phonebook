@@ -1,12 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import PrivateRoute from 'components/appBar/PrivateRoute';
+import PublicRoute from 'components/appBar/PublicRoute';
 // import { NameField } from '../Form/Form';
 // import { ContactList } from '../ContactList/ContactList';
 // import { FilterField } from '../Filter/filter';
 // import { useGetContactsQuery } from 'redux/contactsSlice';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 // import HomeView from 'views/HomeView';
 // import Welcome from "views/WelcomeView";
 import AppBar from 'components/appBar/AppBar';
+import { fetchCurrentUser } from 'redux/auth/authOperations';
 
 const HomeView = lazy(() =>
   import('../../views/HomeView' /* webpackChunkName: "home-page" */)
@@ -25,16 +29,50 @@ const ContactsView = lazy(() =>
 );
 
 export function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <div>
       <AppBar />
       <Suspense fallback={<h2>Loading....</h2>}>
         <Routes>
           <Route path="goit-react-hw-08-phonebook/" element={<HomeView />}>
-            <Route index element={<Welcome />} />
-            <Route path="register" element={<RegisterView />} />
-            <Route path="login" element={<LoginView />} />
-            <Route path="contacts" element={<ContactsView />} />
+            <Route
+              index
+              element={
+                <PublicRoute>
+                  <Welcome />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute restricted>
+                  <RegisterView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute restricted>
+                  <LoginView />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
           </Route>
         </Routes>
       </Suspense>
