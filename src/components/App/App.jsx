@@ -6,7 +6,7 @@ import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 // import HomeView from 'views/HomeView';
 // import Welcome from "views/WelcomeView";
-import AppBar from 'components/AppBar';
+import AppBar from 'components/appBar/AppBar';
 
 const HomeView = lazy(() =>
   import('../../views/HomeView' /* webpackChunkName: "home-page" */)
@@ -30,7 +30,7 @@ export function App() {
       <AppBar />
       <Suspense fallback={<h2>Loading....</h2>}>
         <Routes>
-          <Route path="/goit-react-hw-08-phonebook/" element={<HomeView />}>
+          <Route path="goit-react-hw-08-phonebook/" element={<HomeView />}>
             <Route index element={<Welcome />} />
             <Route path="register" element={<RegisterView />} />
             <Route path="login" element={<LoginView />} />

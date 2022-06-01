@@ -1,5 +1,7 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { login } from 'redux/auth/authOperations';
 
 // import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -8,7 +10,7 @@ import * as yup from 'yup';
 const LoginPage = () => {
   // const [email, setEmail] = useState('');
   // const [name, setName] = useState('');
-
+  const dispatch = useDispatch();
   const schema = yup.object().shape({
     email: yup
       .string()
@@ -23,6 +25,12 @@ const LoginPage = () => {
     password: '',
   };
 
+  const handleSubmit = (values, { resetForm }) => {
+    const { email, password } = values;
+    dispatch(login({ email, password }));
+    resetForm();
+  };
+
   const passwordInputId = nanoid();
   const emailInputId = nanoid();
   return (
@@ -31,7 +39,7 @@ const LoginPage = () => {
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <Form autoComplete="off">
           <label htmlFor={emailInputId}>E-mail</label>

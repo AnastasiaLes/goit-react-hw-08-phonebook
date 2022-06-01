@@ -1,27 +1,29 @@
 // import { Nav, NavElement } from "./Navigation.styled";
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
+import { NavigationLink } from './AppBar.styled';
+
 import { useLocation } from 'react-router-dom';
 
 const AuthNav = () => {
   const location = useLocation();
   return (
     <nav>
-      <NavLink
+      <NavigationLink
         to={{
           pathname: '/goit-react-hw-08-phonebook/register',
           state: { from: location },
         }}
       >
         Register
-      </NavLink>
-      <NavLink
+      </NavigationLink>
+      <NavigationLink
         to={{
           pathname: '/goit-react-hw-08-phonebook/login',
           state: { from: location },
         }}
       >
         Log in
-      </NavLink>
+      </NavigationLink>
     </nav>
   );
 };
