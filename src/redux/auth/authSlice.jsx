@@ -11,6 +11,7 @@ const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isFetchingCurrentUser: false,
 };
 
 const authSlice = createSlice({
@@ -18,28 +19,30 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled]: (state, action) => {
-      // console.log('state: ', state, 'action: ', action);
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
     [login.fulfilled]: (state, action) => {
-      // console.log('state: ', state, 'action: ', action);
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
     [logOut.fulfilled]: state => {
-      // console.log('state: ', state);
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+    [fetchCurrentUser.pending]: state => {
+      state.isFetchingCurrentUser = true;
+    },
     [fetchCurrentUser.fulfilled]: (state, action) => {
-      // console.log('state: ', state);
       state.user = action.payload;
-      // state.token = null;
       state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [fetchCurrentUser.rejected]: state => {
+      state.isFetchingCurrentUser = false;
     },
   },
 });
@@ -59,3 +62,5 @@ export const persistedAuthReducer = persistReducer(
 
 export const getName = state => state.auth.user.name;
 export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getIsFetchingCurrentUser = state =>
+  state.auth.isFetchingCurrentUser;

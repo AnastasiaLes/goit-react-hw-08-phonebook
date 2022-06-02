@@ -13,4 +13,9 @@ export const FilterName = styled.label`
 
 export const FilterInput = styled.input`
   display: flex;
+  background-color: #87ceeb;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+  border-bottom: solid, 1px, #fff;
 `;

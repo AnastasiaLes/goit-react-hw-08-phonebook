@@ -2,8 +2,15 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import {
+  ContactField,
+  AddContactButton,
+  FieldName,
+  FormContainer,
+  FormName,
+} from 'components/Form/Form.styled';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -20,7 +27,6 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    // event.preventDefault();
     const { name, email, password } = values;
     dispatch(register({ name, email, password }));
     resetForm();
@@ -31,30 +37,30 @@ const RegisterPage = () => {
   const nameInputId = nanoid();
 
   return (
-    <div>
-      <h2>Register</h2>
+    <FormContainer>
+      <FormName>Register</FormName>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
         <Form autoComplete="off">
-          <label htmlFor={nameInputId}>Name</label>
-          <Field type="name" name="name" id={nameInputId} />
+          <FieldName htmlFor={nameInputId}>Name</FieldName>
+          <ContactField type="name" name="name" id={nameInputId} />
           <ErrorMessage name="name" component="div" />
 
-          <label htmlFor={emailInputId}>E-mail</label>
-          <Field type="email" name="email" id={emailInputId} />
+          <FieldName htmlFor={emailInputId}>E-mail</FieldName>
+          <ContactField type="email" name="email" id={emailInputId} />
           <ErrorMessage name="e-mail" component="div" />
 
-          <label htmlFor={passwordInputId}>Password</label>
-          <Field type="password" name="password" id={passwordInputId} />
+          <FieldName htmlFor={passwordInputId}>Password</FieldName>
+          <ContactField type="password" name="password" id={passwordInputId} />
           <ErrorMessage name="password" component="div" />
 
-          <button type="submit">Register</button>
+          <AddContactButton type="submit">Register</AddContactButton>
         </Form>
       </Formik>
-    </div>
+    </FormContainer>
   );
 };
 

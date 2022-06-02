@@ -4,6 +4,7 @@ import { getName } from 'redux/auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { UserMenuContainer } from './AppBar.styled';
 import { logOut } from 'redux/auth/authOperations';
+import { LogOutBtn, UserName } from './AppBar.styled';
 
 export default function UserMenu() {
   const userName = useSelector(getName);
@@ -15,10 +16,10 @@ export default function UserMenu() {
   };
   return (
     <UserMenuContainer>
-      <h2>{userName}</h2>
-      <button type="button" onClick={onLogOutClick}>
+      <UserName>{userName}</UserName>
+      <LogOutBtn type="button" onClick={onLogOutClick}>
         Log Out
-      </button>
+      </LogOutBtn>
     </UserMenuContainer>
   );
 }

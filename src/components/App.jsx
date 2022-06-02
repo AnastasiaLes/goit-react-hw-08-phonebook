@@ -1,10 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from 'components/appBar/PrivateRoute';
 import PublicRoute from 'components/appBar/PublicRoute';
 import { Suspense, lazy, useEffect } from 'react';
 import AppBar from 'components/appBar/AppBar';
 import { fetchCurrentUser } from 'redux/auth/authOperations';
+import { getIsFetchingCurrentUser } from 'redux/auth/authSlice';
 
 const HomeView = lazy(() =>
   import('../views/HomeView' /* webpackChunkName: "home-page" */)
@@ -24,12 +25,15 @@ const ContactsView = lazy(() =>
 
 export function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(getIsFetchingCurrentUser);
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
   }, [dispatch]);
 
-  return (
+  return isRefreshing ? (
+    <h2>Loading....</h2>
+  ) : (
     <div>
       <AppBar />
       <Suspense fallback={<h2>Loading....</h2>}>

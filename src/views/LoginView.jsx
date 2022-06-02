@@ -4,8 +4,15 @@ import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as yup from 'yup';
+import {
+  ContactField,
+  AddContactButton,
+  FieldName,
+  FormContainer,
+  FormName,
+} from 'components/Form/Form.styled';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -34,25 +41,25 @@ const LoginPage = () => {
   const passwordInputId = nanoid();
   const emailInputId = nanoid();
   return (
-    <div>
-      <h2>Log In</h2>
+    <FormContainer>
+      <FormName>Log In</FormName>
       <Formik
         initialValues={initialValues}
         validationSchema={schema}
         onSubmit={handleSubmit}
       >
         <Form autoComplete="off">
-          <label htmlFor={emailInputId}>E-mail</label>
-          <Field type="email" name="email" id={emailInputId} />
+          <FieldName htmlFor={emailInputId}>E-mail</FieldName>
+          <ContactField type="email" name="email" id={emailInputId} />
           <ErrorMessage name="e-mail" component="div" />
 
-          <label htmlFor={passwordInputId}>Password</label>
-          <Field type="text" name="password" id={passwordInputId} />
+          <FieldName htmlFor={passwordInputId}>Password</FieldName>
+          <ContactField type="password" name="password" id={passwordInputId} />
           <ErrorMessage name="password" component="div" />
-          <button type="submit">Log In</button>
+          <AddContactButton type="submit">Log In</AddContactButton>
         </Form>
       </Formik>
-    </div>
+    </FormContainer>
   );
 };
 

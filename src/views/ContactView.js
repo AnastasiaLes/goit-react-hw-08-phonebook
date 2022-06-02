@@ -3,6 +3,11 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { FilterField } from 'components/Filter/filter';
 import { useGetContactsQuery } from 'redux/contactsSlice';
 import { useState } from 'react';
+import {
+  ContactsContainer,
+  ContactsTitle,
+  ContactsColumn,
+} from './ContactsView.styled';
 
 export default function ContactsView() {
   const [search, setSearch] = useState('');
@@ -18,11 +23,17 @@ export default function ContactsView() {
   };
 
   return (
-    <div>
-      <NameField listOfContacts={data} />
-      <FilterField addFilter={addFilter} />
-      {isFetching && <h2>Loading...</h2>}
-      {data && <ContactList listOfContacts={visibleContacts.reverse()} />}
-    </div>
+    <ContactsContainer>
+      <ContactsColumn>
+        <NameField listOfContacts={data} />
+      </ContactsColumn>
+
+      <ContactsColumn>
+        <ContactsTitle>Contacts</ContactsTitle>
+        <FilterField addFilter={addFilter} />
+        {isFetching && <h2>Loading...</h2>}
+        {data && <ContactList listOfContacts={visibleContacts.reverse()} />}
+      </ContactsColumn>
+    </ContactsContainer>
   );
 }
