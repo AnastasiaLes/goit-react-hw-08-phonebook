@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Spinner } from 'react-bootstrap';
 import PrivateRoute from 'components/appBar/PrivateRoute';
 import PublicRoute from 'components/appBar/PublicRoute';
 import { Suspense, lazy, useEffect } from 'react';
@@ -36,7 +38,14 @@ export function App() {
   ) : (
     <div>
       <AppBar />
-      <Suspense fallback={<h2>Loading....</h2>}>
+      <Suspense
+        fallback={
+          <div>
+            <Spinner animation="border" variant="secondary" />
+            Loading....
+          </div>
+        }
+      >
         <Routes>
           <Route path="goit-react-hw-08-phonebook/" element={<HomeView />}>
             <Route
