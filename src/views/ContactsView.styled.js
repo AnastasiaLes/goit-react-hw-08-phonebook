@@ -36,6 +36,7 @@ column-gap: 20px; */
   height: 100%;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  margin-bottom: 20px;
 
   /* + .ContactsColumn {
     margin-left: 4%;

@@ -7,6 +7,7 @@ import {
 } from '../../redux/auth/authOperations';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
+
 const initialState = {
   user: { name: null, email: null },
   token: null,
